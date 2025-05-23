@@ -1,0 +1,75 @@
+{
+  "users": [
+    {
+      "id": "user1747979792829",
+      "email": "ngo123@gmail.com",
+      "role": "ngo",
+      "username": "ngo@123",
+      "password": "password123",
+      "organizationName": "Test NGO",
+      "phone": "1234567890",
+      "address": {
+        "street": "road 7 ",
+        "city": "Kalwakurthy",
+        "state": "Telangana",
+        "pincode": "500090",
+        "country": "India"
+      },
+      "createdAt": "2025-05-23T05:56:32.829Z",
+      "updatedAt": "2025-05-23T05:56:32.830Z"
+    },
+    {
+      "id": "user1747981813598",
+      "email": "donor123@gmail.com",
+      "password": "12345678",
+      "role": "donor",
+      "username": "donor@123",
+      "phone": "8019971808",
+      "address": {
+        "street": "road 7",
+        "city": "Kalwakurthy",
+        "state": "Telangana",
+        "pincode": "500090",
+        "country": "India"
+      },
+      "createdAt": "2025-05-23T06:30:13.598Z",
+      "updatedAt": "2025-05-23T06:30:13.598Z"
+    },
+    {
+      "id": "user1747999418203",
+      "email": "ngokmm@gmail.com",
+      "password": "123456",
+      "role": "ngo",
+      "username": "ngokmm",
+      "organizationName": "ngo_kmm",
+      "phone": "6303965109",
+      "address": {
+        "street": "vivekananda colony",
+        "city": "Khammam",
+        "state": "Telangana",
+        "pincode": "507001",
+        "country": "India"
+      },
+      "createdAt": "2025-05-23T11:23:38.203Z",
+      "updatedAt": "2025-05-23T11:23:38.203Z"
+    },
+    {
+      "id": "user1747999433525",
+      "email": "ngo_kmm@gmail.com",
+      "password": "123456",
+      "role": "ngo",
+      "username": "ngokmm",
+      "organizationName": "ngo_kmm",
+      "phone": "6303965109",
+      "address": {
+        "street": "vivekananda colony",
+        "city": "Khammam",
+        "state": "Telangana",
+        "pincode": "507001",
+        "country": "India"
+      },
+      "createdAt": "2025-05-23T11:23:53.525Z",
+      "updatedAt": "2025-05-23T11:23:53.525Z"
+    }
+  ]
+}

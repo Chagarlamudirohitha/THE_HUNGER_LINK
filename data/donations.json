@@ -1,0 +1,70 @@
+{
+  "donations": [
+    {
+      "id": "donation1747982795975",
+      "donorId": "user1747981813598",
+      "donorName": "donor@123",
+      "foodType": "cooked",
+      "servings": "10",
+      "pickupTime": "2025-05-23T12:30",
+      "expiryDate": "2025-05-23T17:16",
+      "notes": "",
+      "location": {
+        "street": "road 7",
+        "city": "Kalwakurthy",
+        "state": "Telangana",
+        "pincode": "500090",
+        "country": "India"
+      },
+      "status": "completed",
+      "ngoId": "user1747979792829",
+      "ngoName": "Test NGO",
+      "createdAt": "2025-05-23T06:46:35.975Z",
+      "updatedAt": "2025-05-23T09:15:36.579Z"
+    },
+    {
+      "id": "donation1747991835267",
+      "donorId": "user1747981813598",
+      "donorName": "donor@123",
+      "foodType": "perishable",
+      "servings": "10",
+      "pickupTime": "2025-05-23T14:50",
+      "expiryDate": "2025-05-24T14:47",
+      "notes": "",
+      "location": {
+        "street": "road 7",
+        "city": "Kalwakurthy",
+        "state": "Telangana",
+        "pincode": "500090",
+        "country": "India"
+      },
+      "status": "completed",
+      "ngoId": "user1747979792829",
+      "ngoName": "Test NGO",
+      "createdAt": "2025-05-23T09:17:15.267Z",
+      "updatedAt": "2025-05-23T11:19:25.021Z"
+    },
+    {
+      "id": "donation1748006262587",
+      "donorId": "user1747981813598",
+      "donorName": "donor@123",
+      "foodType": "packaged",
+      "servings": "10",
+      "pickupTime": "2025-05-23T18:52",
+      "expiryDate": "2025-05-24T18:47",
+      "notes": "",
+      "location": {
+        "street": "11-10-770/18/5",
+        "city": "Khammam",
+        "state": "telangana",
+        "pincode": "507001",
+        "country": "India"
+      },
+      "status": "picked_up",
+      "ngoId": "user1747999418203",
+      "ngoName": "ngo_kmm",
+      "createdAt": "2025-05-23T13:17:42.587Z",
+      "updatedAt": "2025-05-23T13:18:11.693Z"
+    }
+  ]
+}
