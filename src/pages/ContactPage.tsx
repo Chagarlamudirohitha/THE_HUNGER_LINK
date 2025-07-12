@@ -170,9 +170,9 @@ const ContactPage: React.FC = () => {
                     <div>
                       <h4 className="font-medium text-gray-800">Address</h4>
                       <p className="text-gray-600">
-                        123 Food Street<br />
-                        San Francisco, CA 94105<br />
-                        United States
+                        VNR VJIET College<br />
+                        Bachupally,Hyderabad<br />
+                       Telangana,India
                       </p>
                     </div>
                   </div>
@@ -181,8 +181,8 @@ const ContactPage: React.FC = () => {
                     <Mail size={20} className="text-primary-600 mt-1 mr-3 flex-shrink-0" />
                     <div>
                       <h4 className="font-medium text-gray-800">Email</h4>
-                      <a href="mailto:info@The Hunger Link.org" className="text-primary-600 hover:text-primary-700">
-                        info@The Hunger Link.org
+                      <a href="mailto:thehungerlink@gmail.com" className="text-primary-600 hover:text-primary-700">
+                      thehungerlink@gmail.com
                       </a>
                     </div>
                   </div>
@@ -191,8 +191,8 @@ const ContactPage: React.FC = () => {
                     <Phone size={20} className="text-primary-600 mt-1 mr-3 flex-shrink-0" />
                     <div>
                       <h4 className="font-medium text-gray-800">Phone</h4>
-                      <a href="tel:+11234567890" className="text-primary-600 hover:text-primary-700">
-                        +1 (123) 456-7890
+                      <a href="tel:+91 6303965109" className="text-primary-600 hover:text-primary-700">
+                      +91 6303965109
                       </a>
                     </div>
                   </div>
@@ -202,7 +202,7 @@ const ContactPage: React.FC = () => {
                 <ul className="space-y-2 text-gray-600">
                   <li className="flex justify-between">
                     <span>Monday - Friday</span>
-                    <span className="font-medium">9:00 AM - 6:00 PM</span>
+                    <span className="font-medium">10:00 AM - 5:00 PM</span>
                   </li>
                   <li className="flex justify-between">
                     <span>Saturday</span>

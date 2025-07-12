@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import bcrypt from 'bcryptjs';
 
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -61,7 +62,7 @@ initializeDataFile(NOTIFICATIONS_FILE, { notifications: [] });
 initializeDataFile(CHATS_FILE, { chats: [] });
 
 // Auth routes - Place these before other routes
-app.post('/api/auth/login', (req, res) => {
+app.post('/api/auth/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     console.log('Login attempt:', { email, password });
@@ -69,10 +70,25 @@ app.post('/api/auth/login', (req, res) => {
     const data = fs.readFileSync(USERS_FILE, 'utf-8');
     const { users } = JSON.parse(data);
     
-    const user = users.find(u => u.email === email);
-    console.log('Found user:', user);
+    // Debug: print all loaded user emails
+    console.log('Loaded user emails:', users.map(u => `[${u.email}]`).join(', '));
+    // Debug: print normalized input email
+    const normalizedInputEmail = email.trim().toLowerCase();
+    console.log('Normalized input email:', `[${normalizedInputEmail}]`);
     
-    if (!user || user.password !== password) {
+    const user = users.find(u => u.email.trim().toLowerCase() === normalizedInputEmail);
+    // Debug: print found user object
+    console.log('Found user:', user);
+    if (!user) {
+      console.log('Invalid credentials');
+      return res.status(401).json({ 
+        success: false, 
+        message: 'Invalid email or password' 
+      });
+    }
+    // Compare hashed password
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
       console.log('Invalid credentials');
       return res.status(401).json({ 
         success: false, 
@@ -97,7 +113,7 @@ app.post('/api/auth/login', (req, res) => {
   }
 });
 
-app.post('/api/auth/register', (req, res) => {
+app.post('/api/auth/register', async (req, res) => {
   try {
     console.log('Registration request received:', req.body);
     
@@ -134,11 +150,14 @@ app.post('/api/auth/register', (req, res) => {
       });
     }
     
+    // Hash the password before storing
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    
     // Create new user with proper structure
     const newUser = {
       id: `user${Date.now()}`,
       email: req.body.email,
-      password: req.body.password,
+      password: hashedPassword,
       role: req.body.role,
       username: req.body.username,
       organizationName: req.body.role === 'ngo' ? req.body.organizationName : undefined,
@@ -437,14 +456,21 @@ app.get('/api/donations', (req, res) => {
   try {
     const data = fs.readFileSync(DONATIONS_FILE, 'utf-8');
     const { donations } = JSON.parse(data);
-    
+
+    const { donorId, ngoId } = req.query;
+
+    // Filter by donorId if provided
+    if (donorId) {
+      const donorDonations = donations.filter(d => d.donorId === donorId);
+      return res.json(donorDonations);
+    }
+
     // If NGO ID is provided in query params, filter by location
-    const { ngoId } = req.query;
     if (ngoId) {
       const usersData = fs.readFileSync(USERS_FILE, 'utf-8');
       const { users } = JSON.parse(usersData);
       const ngo = users.find(u => u.id === ngoId);
-      
+
       if (ngo) {
         const availableDonations = donations.filter(d => {
           // Only show pending donations
@@ -455,7 +481,8 @@ app.get('/api/donations', (req, res) => {
         return res.json(availableDonations);
       }
     }
-    
+
+    // Default: return all donations
     res.json(donations);
   } catch (error) {
     res.status(500).json({ error: 'Error reading donations' });
@@ -557,14 +584,14 @@ app.put('/api/donations/:id', (req, res) => {
       const usersData = fs.readFileSync(USERS_FILE, 'utf-8');
       const { users } = JSON.parse(usersData);
       const ngo = users.find(u => u.id === req.body.ngoId);
-      
+
       if (!ngo) {
         return res.status(400).json({ error: 'NGO not found' });
       }
-      
+
       if (!areLocationsInProximity(oldDonation.location, ngo.address)) {
-        return res.status(400).json({ 
-          error: 'Cannot accept donation: Location is too far or not in the same region' 
+        return res.status(400).json({
+          error: 'Cannot accept donation: Location is too far or not in the same region'
         });
       }
       
@@ -652,17 +679,8 @@ app.get('/api/donations/donor/:donorId', (req, res) => {
       return res.status(404).json({ error: 'Donor not found' });
     }
 
-    // Filter donations by donor ID and location
-    const donorDonations = donations.filter(d => {
-      // If it's the donor's own donation, include it
-      if (d.donorId === req.params.donorId) {
-        return true;
-      }
-      
-      // For other donations, check if they're in the same area
-      return areLocationsInProximity(d.location, donor.address);
-    });
-    
+    // Filter donations by donor ID only
+    const donorDonations = donations.filter(d => d.donorId === req.params.donorId);
     res.json(donorDonations);
   } catch (error) {
     res.status(500).json({ error: 'Error reading donor donations' });

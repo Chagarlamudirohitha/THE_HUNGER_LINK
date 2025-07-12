@@ -40,7 +40,7 @@ const useAuthStore = create<AuthState>(
           // Store user data in session storage for persistence
           sessionStorage.setItem('currentUser', JSON.stringify(response.user));
         } catch (error) {
-          const errorMessage = error instanceof Error ? error.message : 'Login failed';
+          const errorMessage = error instanceof Error ? error.message : 'Incorrect username or password';
           console.error('Login error:', errorMessage);
           set({ 
             isLoading: false,

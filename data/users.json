@@ -1,75 +1,177 @@
 {
   "users": [
     {
-      "id": "user1747979792829",
-      "email": "ngo123@gmail.com",
-      "role": "ngo",
-      "username": "ngo@123",
-      "password": "password123",
-      "organizationName": "Test NGO",
-      "phone": "1234567890",
-      "address": {
-        "street": "road 7 ",
-        "city": "Kalwakurthy",
-        "state": "Telangana",
-        "pincode": "500090",
-        "country": "India"
-      },
-      "createdAt": "2025-05-23T05:56:32.829Z",
-      "updatedAt": "2025-05-23T05:56:32.830Z"
-    },
-    {
-      "id": "user1747981813598",
-      "email": "donor123@gmail.com",
-      "password": "12345678",
+      "id": "user1001",
+      "email": "donor1@example.com",
+      "password": "$2b$10$lX4/3mXgiwwCe4qlMLkaeeQbayQO5ANyyr1HQ5qsqa/k3USjpOgde",
       "role": "donor",
-      "username": "donor@123",
-      "phone": "8019971808",
+      "username": "Donor_One",
+      "phone": "1111111111",
       "address": {
-        "street": "road 7",
-        "city": "Kalwakurthy",
-        "state": "Telangana",
-        "pincode": "500090",
+        "street": "123 Main St",
+        "city": "Metrocity",
+        "state": "StateA",
+        "pincode": "123456",
         "country": "India"
       },
-      "createdAt": "2025-05-23T06:30:13.598Z",
-      "updatedAt": "2025-05-23T06:30:13.598Z"
+      "createdAt": "2025-07-12T10:00:00.000Z",
+      "updatedAt": "2025-07-12T10:00:00.000Z"
     },
     {
-      "id": "user1747999418203",
-      "email": "ngokmm@gmail.com",
-      "password": "123456",
+      "id": "user1002",
+      "email": "donor2@example.com",
+      "password": "$2b$10$lX4/3mXgiwwCe4qlMLkaeeQbayQO5ANyyr1HQ5qsqa/k3USjpOgde",
+      "role": "donor",
+      "username": "Donor_Two",
+      "phone": "2222222222",
+      "address": {
+        "street": "123 Main St",
+        "city": "Metrocity",
+        "state": "StateA",
+        "pincode": "123456",
+        "country": "India"
+      },
+      "createdAt": "2025-07-12T10:01:00.000Z",
+      "updatedAt": "2025-07-12T10:01:00.000Z"
+    },
+    {
+      "id": "user1003",
+      "email": "donor3@example.com",
+      "password": "$2b$10$lX4/3mXgiwwCe4qlMLkaeeQbayQO5ANyyr1HQ5qsqa/k3USjpOgde",
+      "role": "donor",
+      "username": "Donor_Three",
+      "phone": "3333333333",
+      "address": {
+        "street": "456 Side St",
+        "city": "Metrocity",
+        "state": "StateA",
+        "pincode": "123459",
+        "country": "India"
+      },
+      "createdAt": "2025-07-12T10:02:00.000Z",
+      "updatedAt": "2025-07-12T10:02:00.000Z"
+    },
+    {
+      "id": "user1004",
+      "email": "donor4@example.com",
+      "password": "$2b$10$lX4/3mXgiwwCe4qlMLkaeeQbayQO5ANyyr1HQ5qsqa/k3USjpOgde",
+      "role": "donor",
+      "username": "Donor_Four",
+      "phone": "4444444444",
+      "address": {
+        "street": "789 Far St",
+        "city": "Othercity",
+        "state": "StateB",
+        "pincode": "654321",
+        "country": "India"
+      },
+      "createdAt": "2025-07-12T10:03:00.000Z",
+      "updatedAt": "2025-07-12T10:03:00.000Z"
+    },
+    {
+      "id": "ngo2001",
+      "email": "ngo1@example.com",
+      "password": "$2b$10$lX4/3mXgiwwCe4qlMLkaeeQbayQO5ANyyr1HQ5qsqa/k3USjpOgde",
       "role": "ngo",
-      "username": "ngokmm",
-      "organizationName": "ngo_kmm",
+      "username": "NGO_One",
+      "organizationName": "Helping Hands",
+      "phone": "5555555555",
+      "address": {
+        "street": "123 Main St",
+        "city": "Metrocity",
+        "state": "StateA",
+        "pincode": "123456",
+        "country": "India"
+      },
+      "createdAt": "2025-07-12T10:04:00.000Z",
+      "updatedAt": "2025-07-12T10:04:00.000Z"
+    },
+    {
+      "id": "ngo2002",
+      "email": "ngo2@example.com",
+      "password": "$2b$10$lX4/3mXgiwwCe4qlMLkaeeQbayQO5ANyyr1HQ5qsqa/k3USjpOgde",
+      "role": "ngo",
+      "username": "NGO_Two",
+      "organizationName": "Food For All",
+      "phone": "6666666666",
+      "address": {
+        "street": "789 Far St",
+        "city": "Othercity",
+        "state": "StateB",
+        "pincode": "654321",
+        "country": "India"
+      },
+      "createdAt": "2025-07-12T10:05:00.000Z",
+      "updatedAt": "2025-07-12T10:05:00.000Z"
+    },
+    {
+      "id": "user1752322200149",
+      "email": "test_donor@gmail.com",
+      "password": "$2b$10$.Qo7130CtkTvL/6m2vLRGuIxTQv1T4jm6xWzl52HGoW65/GR2HXhC",
+      "role": "donor",
+      "username": "test_donor",
       "phone": "6303965109",
       "address": {
-        "street": "vivekananda colony",
+        "street": " h-no 11-10-770/18/5 Raparthi Nagar",
         "city": "Khammam",
         "state": "Telangana",
         "pincode": "507001",
         "country": "India"
       },
-      "createdAt": "2025-05-23T11:23:38.203Z",
-      "updatedAt": "2025-05-23T11:23:38.203Z"
+      "createdAt": "2025-07-12T12:10:00.149Z",
+      "updatedAt": "2025-07-12T12:10:00.149Z"
     },
     {
-      "id": "user1747999433525",
-      "email": "ngo_kmm@gmail.com",
-      "password": "123456",
+      "id": "user1752322304393",
+      "email": "test_ngo@gmail.com",
+      "password": "$2b$10$ng8tw8h3ITsvA0BM3QWf5eVoEZoVsUH4FYo57N1gD4pnrRmNHEftu",
       "role": "ngo",
-      "username": "ngokmm",
-      "organizationName": "ngo_kmm",
-      "phone": "6303965109",
+      "username": "test_ngo",
+      "organizationName": "sweccha",
+      "phone": "9788891445",
       "address": {
-        "street": "vivekananda colony",
+        "street": " h-no 11-10-771/18/5 Raparthi Nagar",
         "city": "Khammam",
         "state": "Telangana",
         "pincode": "507001",
         "country": "India"
       },
-      "createdAt": "2025-05-23T11:23:53.525Z",
-      "updatedAt": "2025-05-23T11:23:53.525Z"
+      "createdAt": "2025-07-12T12:11:44.393Z",
+      "updatedAt": "2025-07-12T12:11:44.393Z"
+    },
+    {
+      "id": "user1752322405582",
+      "email": "test_don2@gmail.com",
+      "password": "$2b$10$e0phrrXK4IUyAUK48.NYrut49a6R2h1ZOiHVHY.Ik8tZ.Q.Il5keC",
+      "role": "donor",
+      "username": "test_don2",
+      "phone": "6303965108",
+      "address": {
+        "street": " h-no 11-10-770 gandhi veedhi",
+        "city": "kalwakurthy",
+        "state": "Telangana",
+        "pincode": "509001",
+        "country": "India"
+      },
+      "createdAt": "2025-07-12T12:13:25.582Z",
+      "updatedAt": "2025-07-12T12:13:25.582Z"
+    },
+    {
+      "id": "user1752322536623",
+      "email": "rohithachagarlamudi@gmail.com",
+      "password": "$2b$10$XcMNedKMXRHuZVShSs/yjezLUoAf0SqeMooFmY4VCRKK0lfBRRiiC",
+      "role": "donor",
+      "username": "Ch_Rohitha",
+      "phone": "6303965109",
+      "address": {
+        "street": " h-no 11-10-770/18/5 Raparthi Nagar",
+        "city": "Khammam",
+        "state": "Telangana",
+        "pincode": "507001",
+        "country": "India"
+      },
+      "createdAt": "2025-07-12T12:15:36.623Z",
+      "updatedAt": "2025-07-12T12:15:36.623Z"
     }
   ]
 }

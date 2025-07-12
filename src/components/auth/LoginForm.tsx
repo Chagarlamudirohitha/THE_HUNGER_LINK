@@ -8,6 +8,7 @@ const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [localError, setLocalError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     // Check if user is already authenticated
@@ -25,6 +26,10 @@ const LoginForm: React.FC = () => {
 
     if (!email || !password) {
       setLocalError('Please fill in all fields');
+      return;
+    }
+    if (password.length < 8) {
+      setLocalError('Password must be at least 8 characters long.');
       return;
     }
 
@@ -62,13 +67,26 @@ const LoginForm: React.FC = () => {
 
         <div>
           <label className="block text-sm font-medium text-gray-700">Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-          />
+          <div className="relative">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+            />
+            <button
+              type="button"
+              className="absolute right-2 top-2 text-gray-500"
+              onClick={() => setShowPassword((show) => !show)}
+              tabIndex={-1}
+            >
+              {showPassword ? 'Hide' : 'Show'}
+            </button>
+          </div>
+          {password && password.length < 8 && (
+            <p className="text-xs text-red-500 mt-1">Password must be at least 8 characters long.</p>
+          )}
         </div>
 
         <button

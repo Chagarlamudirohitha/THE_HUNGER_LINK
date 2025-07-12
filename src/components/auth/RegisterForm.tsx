@@ -2,11 +2,33 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
 
+interface Address {
+  street: string;
+  city: string;
+  state: string;
+  pincode: string;
+  country: string;
+}
+
+// If you have a UserRole type elsewhere, import it and use UserRole instead of string for 'role'
+type UserRole = 'donor' | 'ngo';
+
+interface RegisterFormData {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  username: string;
+  role: UserRole;
+  organizationName: string;
+  phone: string;
+  address: Address;
+}
+
 const RegisterForm: React.FC = () => {
   const navigate = useNavigate();
   const { register, isLoading, error, clearError } = useAuthStore();
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<RegisterFormData>({
     email: '',
     password: '',
     confirmPassword: '',
@@ -24,17 +46,19 @@ const RegisterForm: React.FC = () => {
   });
   
   const [localError, setLocalError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     
     if (name.includes('.')) {
       // Handle nested address fields
-      const [parent, child] = name.split('.');
+      const [parent, child] = name.split('.') as [keyof RegisterFormData, keyof Address];
       setFormData(prev => ({
         ...prev,
         [parent]: {
-          ...prev[parent],
+          ...prev[parent as keyof RegisterFormData] as Address,
           [child]: value
         }
       }));
@@ -51,22 +75,22 @@ const RegisterForm: React.FC = () => {
       setLocalError('Please fill in all required fields');
       return false;
     }
-    
+    if (formData.password.length < 8) {
+      setLocalError('Password must be at least 8 characters long');
+      return false;
+    }
     if (formData.password !== formData.confirmPassword) {
       setLocalError('Passwords do not match');
       return false;
     }
-    
     if (formData.role === 'ngo' && !formData.organizationName) {
       setLocalError('Organization name is required for NGO registration');
       return false;
     }
-    
     if (!formData.phone) {
       setLocalError('Phone number is required');
       return false;
     }
-    
     return true;
   };
 
@@ -80,7 +104,8 @@ const RegisterForm: React.FC = () => {
     }
 
     try {
-      await register(formData, formData.password);
+      const { confirmPassword, ...userData } = formData;
+      await register(userData, formData.password);
       // Redirect will happen automatically through auth store
     } catch (err) {
       console.error('Registration error:', err);
@@ -180,28 +205,54 @@ const RegisterForm: React.FC = () => {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              placeholder="••••••••"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                placeholder="Create a password"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+              />
+              <button
+                type="button"
+                className="absolute right-2 top-2 text-gray-500"
+                onClick={() => setShowPassword((show) => !show)}
+                tabIndex={-1}
+              >
+                {showPassword ? 'Hide' : 'Show'}
+              </button>
+            </div>
+            {formData.password && formData.password.length < 8 && (
+              <p className="text-xs text-red-500 mt-1">Password must be at least 8 characters long.</p>
+            )}
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700">Confirm Password</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-              placeholder="••••••••"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-            />
+            <div className="relative">
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+                placeholder="Confirm your password"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+              />
+              <button
+                type="button"
+                className="absolute right-2 top-2 text-gray-500"
+                onClick={() => setShowConfirmPassword((show) => !show)}
+                tabIndex={-1}
+              >
+                {showConfirmPassword ? 'Hide' : 'Show'}
+              </button>
+            </div>
+            {formData.confirmPassword && formData.password !== formData.confirmPassword && (
+              <p className="text-xs text-red-500 mt-1">Passwords do not match.</p>
+            )}
           </div>
         </div>
 
